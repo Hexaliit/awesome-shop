@@ -5,6 +5,7 @@ use App\Http\Controllers\API\Client\CommentsController as ClientCommentControlle
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\Client\RatingsController;
+use App\Http\Controllers\API\OrdersController;
 use App\Http\Controllers\API\ProductsController;
 use App\Http\Controllers\API\RoleController;
 use App\Models\Comment;
@@ -53,3 +54,6 @@ Route::delete('role/{role}/permission' , [RoleController::class , 'deletePermiss
 Route::get('comments' , [CommentsController::class , 'index']);
 Route::patch('comment/{comment}' , [CommentsController::class , 'update']);
 Route::delete('comment/{comment}' , [CommentsController::class , 'destroy']);
+
+Route::middleware('auth:sanctum')->post('checkout' , [OrdersController::class , 'store']);
+Route::post('order/payment/callback' , [OrdersController::class , 'callback'])->name('order.callback');
