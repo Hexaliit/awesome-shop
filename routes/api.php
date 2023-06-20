@@ -56,4 +56,4 @@ Route::patch('comment/{comment}' , [CommentsController::class , 'update']);
 Route::delete('comment/{comment}' , [CommentsController::class , 'destroy']);
 
 Route::middleware('auth:sanctum')->post('checkout' , [OrdersController::class , 'store']);
-Route::post('order/payment/callback' , [OrdersController::class , 'callback'])->name('order.callback');
+Route::get('order/payment/callback' , [OrdersController::class , 'callback']);

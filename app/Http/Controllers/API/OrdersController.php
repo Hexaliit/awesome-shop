@@ -41,17 +41,18 @@ class OrdersController extends Controller
 
             $invoice = new Invoice();
             $invoice->amount($total_amount);
+            $invoice->uuid($order->id);
 
-            Payment::purchase($invoice , function ($drive , $transactionId) use ($order) {
+            return Payment::purchase($invoice , function ($drive , $transactionId) use ($order) {
                 $order->update([
                     'transaction_id' => $transactionId
                 ]);
 
-            })->pay()->render();
+            })->pay()->getAction();
 
-            $reciept = Payment::amount($total_amount)->transactionId($order->transaction_id)->verify();
+            $receipt = Payment::amount($total_amount)->transactionId($order->transaction_id)->verify();
 
-            echo $reciept->getRefrenceId();
+            echo $receipt->getReferenceId();
 
         } catch (InvalidPaymentException $exception) {
             echo $exception->getMessage();
@@ -68,13 +69,15 @@ class OrdersController extends Controller
         }
 
         public function callback(Request $request){
-            $order = Order::query()->where('transaction_id' , $request->input('transaction_id'))->first();
+/*            $order = Order::query()->where('transaction_id' , $request->input('transaction_id'))->first();
 
             $order->update([
                 'order_status' => 1
-            ]);
-
-            return response()->json(['message' => 'success']);
+            ]);*/
+            dump($request->input('status'));
+            dump($request->input('success'));
+            dump($request->input('orderId'));
+            dump($request->input('trackId'));
         }
 
 

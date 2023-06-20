@@ -10,7 +10,7 @@ return [
     | You can switch to a different driver at runtime.
     |
     */
-    'default' => 'zarinpal',
+    'default' => 'zibal',
 
     /*
     |--------------------------------------------------------------------------
@@ -98,10 +98,10 @@ return [
             'apiPaymentUrl' => 'https://idpay.ir/p/ws/',
             'apiSandboxPaymentUrl' => 'https://idpay.ir/p/ws-sandbox/',
             'apiVerificationUrl' => 'https://api.idpay.ir/v1.1/payment/verify',
-            'merchantId' => '',
-            'callbackUrl' => 'http://yoursite.com/path/to',
+            'merchantId' => "6a7f99eb-7c20-4412-a972-6dfb7cd253a4",
+            'callbackUrl' => 'http://127.0.0.1:8000/api/order/payment/callback',
             'description' => 'payment using idpay',
-            'sandbox' => false, // set it to true for test environments
+            'sandbox' => true, // set it to true for test environments
         ],
         'irankish' => [
             'apiPurchaseUrl' => 'https://ikc.shaparak.ir/api/v3/tokenization/make',
@@ -286,8 +286,8 @@ return [
 
             'mode' => 'normal', // can be normal, direct
 
-            'merchantId' => '',
-            'callbackUrl' => 'http://yoursite.com/path/to',
+            'merchantId' => 'zibal',
+            'callbackUrl' => 'http://127.0.0.1:8000/api/order/payment/callback',
             'description' => 'payment using zibal',
         ],
         'sepordeh' => [

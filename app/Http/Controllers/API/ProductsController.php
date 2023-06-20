@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -15,19 +16,28 @@ class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @param Request $request
+     *
      */
-    public function index()
+    public function index(Request $request)
     {
+        /*Gate::authorize('read-product');*/
 
+        $page = $request->input('page' , 1);
 
-        Gate::authorize('read-product');
-
-        $products = Product::all();
+        $products = Cache::remember('products' , 60*30 , function (){
+            return Product::all();
+        });
         $categories = Category::query()->where('category_id' , '!=' , null)->get();
 
         return response()->json([
-            'products' => $products,
+            'products' => $products->forPage($page , 10),
             'categories' => $categories,
+            'meta' => [
+                'total' => $products->count(),
+                'page' => $page,
+                'last_page' => ceil($products->count() / 10)
+            ]
         ] , 200);
     }
 
