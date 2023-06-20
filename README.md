@@ -3,15 +3,15 @@
 
 This project is developed by PHP/Laravel . in this project i used rest api . some thechnologies ared used for this project are:
 
-- [Routing].
-- [Requests].
-- [Sanctum Authentication].
-- [Factories].
-- [Gate And Policies].
-- [Routing].
-- [Caching].
-- [Queue].
-- [Event Listeners].
+- Routing.
+- Requests.
+- Sanctum Authentication.
+- Factories.
+- Gate And Policies.
+- Routing.
+- Caching.
+- Queue.
+- Event Listeners.
 
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
