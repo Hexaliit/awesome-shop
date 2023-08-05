@@ -24,7 +24,7 @@ return [
     */
     'drivers' => [
         'local' => [
-            'callbackUrl' => '/callback',
+            'callbackUrl' => 'http://127.0.0.1:8000/api/order/payment/callback',
             'title' => 'درگاه پرداخت تست',
             'description' => 'این درگاه *صرفا* برای تست صحت روند پرداخت و لغو پرداخت میباشد',
             'orderLabel' => 'شماره سفارش',

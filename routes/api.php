@@ -39,6 +39,8 @@ Route::post('/category/store' , [CategoryController::class , 'storeSubCat']);
 Route::/*middleware('auth:sanctum')
     ->*/resource('product' , ProductsController::class);
 Route::get('products' , [ProductsController::class , 'search']);
+Route::get('test' , [ProductsController::class , 'test']);
+Route::get('temp' , [ProductsController::class , 'temp']);
 Route::middleware('auth:sanctum')->post('product/{product}/comment' , [ClientCommentController::class , 'store' ]);
 Route::middleware('auth:sanctum')->post('product/{product}/rating' , [RatingsController::class , 'store' ]);
 
